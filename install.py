@@ -535,9 +535,10 @@ def parse_os_release() -> Dict[str, str]:
             for line in f:
                 line = line.strip()
                 if line:
-                    k, v = line.split("=", maxsplit=1)
-                    v = v.strip("'\"")
-                    d[k] = v
+                    if '#' not in line:
+                        k, v = line.split("=", maxsplit=1)
+                        v = v.strip("'\"")
+                        d[k] = v
     return d
 
 
